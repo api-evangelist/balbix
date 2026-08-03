@@ -1,0 +1,58 @@
+generated: '2026-08-02'
+method: searched
+probe: true
+source: https://safe.security/security/
+url: https://safe.security/security/
+operator: SAFE Security
+operator_note: Balbix was acquired by SAFE Security in November 2025. The published
+  compliance posture covering the Balbix service is now the SAFE Security security
+  and compliance page. Balbix-specific security and privacy documentation continues
+  to be published inside the Balbix Help documentation (see documents[] below).
+certifications:
+- SOC 2 Type 2
+- SOC 3
+- ISO 27001:2013
+- ISO 9001:2015
+- TX-RAMP
+frameworks:
+- MITRE
+- NIST
+- FAIR Institute
+documents:
+- title: Balbix Data Security and Privacy
+  version: 1.8.1 (October 2025)
+  url: https://docs.safe.security/balbixhelp/docs/data-security-and-privacy-1
+  pdf: https://cdn.document360.io/23dc20b8-a989-48c0-8653-f1d3e4abc734/Images/Documentation/Balbix%20Data%20Security%20&amp;%20Privacy.pdf
+  sections:
+  - Security Controls
+  - Customer Data Information Security Policy
+  - Personal Data Security Policy
+  - Shared Responsibility Model
+- title: Balbix Product Transparency Statement
+  url: https://docs.safe.security/balbixhelp/docs/product-transparency-statement
+  pdf: https://cdn.document360.io/23dc20b8-a989-48c0-8653-f1d3e4abc734/Images/Documentation/Balbix%20Product%20Transparency%20Statement.pdf
+  covers:
+  - Personal Data Collection and Processing
+  - Data Retention Schedule
+  - International Transfer of Data
+  - Exercise of Data Subject Rights
+  - Technical and Organizational Measures
+evidence:
+- source: https://safe.security/security/
+  kind: security and compliance page
+  keywords:
+  - SOC 2 Type 2
+  - SOC 3
+  - ISO 27001:2013
+  - ISO 9001:2015
+  - TX-RAMP
+- source: https://docs.safe.security/balbixhelp/docs/data-security-and-privacy-1
+  kind: product security documentation
+x-evidence:
+  fetched: '2026-08-02'
+  url: https://safe.security/security/
+  http_status: 200
+  correction: An earlier automated probe matched
+    https://safe.security/ai-agent/trust-center/ — that is a SAFE *product* page (an
+    AI agent that reads other organizations' trust centers), not SAFE's own trust
+    center. Corrected by hand to the real security/compliance page.

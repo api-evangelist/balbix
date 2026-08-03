@@ -1,0 +1,130 @@
+generated: '2026-08-02'
+method: searched
+source: https://docs.safe.security/balbixhelp/docs/balbix-rest-api-guide-v20
+note: Balbix publishes no OpenAPI document. Conformance below is asserted from the
+  published REST API Guide, from anonymous fetches of the Okta OIDC discovery
+  documents at login.balbix.net, and from the SAFE Security security/compliance page
+  that now covers the Balbix service.
+standards:
+- id: openapi
+  conforms: false
+  evidence: No OpenAPI or Swagger document is published on any Balbix or SAFE
+    Security host. Probed /openapi.json, /openapi.yaml, /swagger.json, /api-docs and
+    /v1/openapi.json on www.balbix.com, balbix.net, app.balbix.net and
+    docs.safe.security — all 404, 502, or an authentication redirect.
+- id: oauth2
+  conforms: true
+  scope: platform single sign-on only
+  evidence: login.balbix.net publishes RFC 8414 OAuth 2.0 authorization server
+    metadata; the app.balbix.net web client uses the authorization code flow with
+    PKCE (S256). The REST API itself is NOT OAuth-protected.
+  source: well-known/balbix-oauth-authorization-server.json
+- id: oidc
+  conforms: true
+  scope: platform single sign-on only
+  evidence: An OpenID Connect discovery document is served at
+    https://login.balbix.net/oauth2/aus9g844oA86yTqSo356/.well-known/openid-configuration
+    with the standard OIDC scope set and RS256 ID token signing.
+  source: well-known/balbix-openid-configuration.json
+- id: rfc7617-http-basic
+  conforms: true
+  evidence: The token endpoint /apis/v1/gen_token authenticates with HTTP Basic
+    credentials (documented as `curl --user`).
+- id: rfc6750-bearer-token
+  conforms: false
+  evidence: The API uses an `Authorization` header carrying a raw token rather than
+    the RFC 6750 `Bearer <token>` form, and pairs it with a proprietary
+    `Client-API-Key` header.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: No error format, status-code table or problem+json media type is
+    documented for the Balbix REST API.
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: No /.well-known/security.txt is served on any Balbix or SAFE Security
+    host (see well-known/balbix-well-known.yml).
+- id: rfc8594-sunset-header
+  conforms: false
+  evidence: No Sunset or Deprecation header support is documented.
+- id: a2a-agent-card
+  conforms: false
+  evidence: /.well-known/agent-card.json and /.well-known/agent.json return 404 on
+    every Balbix and SAFE Security host probed on 2026-08-02.
+- id: mcp
+  conforms: false
+  evidence: No Model Context Protocol server is published for Balbix.
+- id: asyncapi
+  conforms: false
+  not_applicable: true
+  evidence: Balbix publishes no outbound webhook, event or streaming surface. In-app
+    automations trigger tagging, notifications, ticket creation and exports; there is
+    no customer-subscribable event contract, so the AsyncAPI family does not apply.
+- id: idempotency
+  conforms: false
+  not_applicable: true
+  evidence: The API is documented as read-only, so it exposes no write surface for an
+    idempotency contract to protect.
+- id: cyclonedx
+  conforms: partial
+  evidence: The software inventory endpoint /apis/v1/bx-it/asset/sw_details returns a
+    `bomRef` field, the CycloneDX BOM reference identifier, alongside component
+    name/vendor/version/type. Balbix does not publish a full CycloneDX BOM document
+    or claim CycloneDX conformance.
+  source: https://docs.safe.security/balbixhelp/docs/balbix-rest-api-guide-v20
+- id: cve
+  conforms: true
+  evidence: Vulnerability payloads carry cve_id, cvss_score, cvss_severity, cwe_id,
+    cpe and vuln_type CVE/NON-CVE.
+- id: cvss
+  conforms: true
+  evidence: cvss_score and cvss_severity are first-class fields on vulnerability and
+    misconfiguration payloads.
+- id: cwe
+  conforms: true
+  evidence: cwe_id / cwe_ids arrays are returned on vulnerability payloads.
+- id: cpe
+  conforms: true
+  evidence: A cpe field is returned on asset vulnerability payloads.
+- id: mitre-attack
+  conforms: true
+  evidence: Vulnerability payloads carry an `attck` array of tactic/technique
+    identifiers (e.g. "TA0040<-->T1499") and a mitre_attck_id field.
+- id: epss
+  conforms: true
+  evidence: Balbix publishes an EPSS Technical Note describing its use of the
+    Exploit Prediction Scoring System.
+  source: https://docs.safe.security/balbixhelp/docs/epss-technical-note
+- id: owasp-top-10
+  conforms: true
+  evidence: OWASP Top 10 is one of the vulnerability tags introduced in the June 2026
+    release notes.
+- id: fair
+  conforms: true
+  evidence: Cyber risk quantification is built on the FAIR standard; SAFE Security
+    lists the FAIR Institute among the open standards it aligns to.
+  source: https://safe.security/security/
+- id: nist
+  conforms: true
+  evidence: Listed as an aligned open standards framework on the SAFE Security
+    security page.
+  source: https://safe.security/security/
+compliance_programs:
+  published: true
+  url: https://safe.security/security/
+  operator: SAFE Security
+  certifications:
+  - SOC 2 Type 2
+  - SOC 3
+  - ISO 27001:2013
+  - ISO 9001:2015
+  - TX-RAMP
+  detail: security/balbix-trust-center.yml
+x-evidence:
+  fetched: '2026-08-02'
+  sources:
+  - url: https://docs.safe.security/balbixhelp/docs/balbix-rest-api-guide-v20.md
+    http_status: 200
+  - url: https://login.balbix.net/oauth2/aus9g844oA86yTqSo356/.well-known/openid-configuration
+    http_status: 200
+  - url: https://safe.security/security/
+    http_status: 200

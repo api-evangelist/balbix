@@ -1,0 +1,128 @@
+generated: '2026-08-02'
+method: searched
+source: https://docs.safe.security/balbixhelp/docs/balbix-rest-api-guide-v20
+docs: https://docs.safe.security/balbixhelp/docs/balbix-rest-api-guide-v20
+note: Balbix publishes no OpenAPI or Swagger document, so this profile is derived from
+  the published Balbix REST API Guide and from live, anonymous fetches of the Okta
+  OpenID Connect discovery documents at login.balbix.net. No credential values are
+  recorded here.
+summary:
+  types:
+  - http
+  - apiKey
+  - openIdConnect
+  api_key_in:
+  - header
+  oauth2_flows:
+  - authorizationCode
+  surfaces:
+  - Balbix REST API v1 (machine-to-machine, token exchange + tenant API key)
+  - Balbix platform web application (interactive, Okta OIDC single sign-on)
+schemes:
+- name: BalbixBasicAuth
+  surface: Balbix REST API v1
+  type: http
+  scheme: basic
+  used_for: Exchanging static credentials for a session Authorization token at the
+    token endpoint. Sent as HTTP Basic on GET /apis/v1/gen_token.
+  source: https://docs.safe.security/balbixhelp/docs/balbix-rest-api-guide-v20
+- name: BalbixAuthorizationToken
+  surface: Balbix REST API v1
+  type: apiKey
+  in: header
+  parameter_name: Authorization
+  used_for: Session authorization on every Balbix REST API call.
+  issued_by: GET https://{tenant}.balbix.net/apis/v1/gen_token?key={CUSTOMER_KEY}
+  ttl_seconds: 1800
+  ttl_note: Tokens expire after 30 minutes.
+  format_note: The documented header value is the raw token, not an RFC 6750 "Bearer
+    <token>" value.
+  source: https://docs.safe.security/balbixhelp/docs/balbix-rest-api-guide-v20
+- name: BalbixClientApiKey
+  surface: Balbix REST API v1
+  type: apiKey
+  in: header
+  parameter_name: Client-API-Key
+  used_for: Uniquely identifies the calling customer tenant. Required in combination
+    with the Authorization token on every endpoint.
+  source: https://docs.safe.security/balbixhelp/docs/balbix-rest-api-guide-v20
+- name: BalbixCustomerKey
+  surface: Balbix REST API v1
+  type: apiKey
+  in: query
+  parameter_name: key
+  used_for: Passed to the /apis/v1/gen_token endpoint alongside HTTP Basic credentials
+    to identify the tenant during token issuance.
+  source: https://docs.safe.security/balbixhelp/docs/balbix-rest-api-guide-v20
+- name: BalbixOkta
+  surface: Balbix platform web application (app.balbix.net)
+  type: openIdConnect
+  openIdConnectUrl: https://login.balbix.net/oauth2/aus9g844oA86yTqSo356/.well-known/openid-configuration
+  issuer: https://login.balbix.net/oauth2/aus9g844oA86yTqSo356
+  provider: Okta
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://login.balbix.net/oauth2/aus9g844oA86yTqSo356/v1/authorize
+    tokenUrl: https://login.balbix.net/oauth2/aus9g844oA86yTqSo356/v1/token
+    scopes_requested_by_app:
+    - openid
+    - profile
+    pkce: true
+    pkce_methods:
+    - S256
+  endpoints:
+    authorization: https://login.balbix.net/oauth2/aus9g844oA86yTqSo356/v1/authorize
+    token: https://login.balbix.net/oauth2/aus9g844oA86yTqSo356/v1/token
+    userinfo: https://login.balbix.net/oauth2/aus9g844oA86yTqSo356/v1/userinfo
+    jwks: https://login.balbix.net/oauth2/aus9g844oA86yTqSo356/v1/keys
+    introspection: https://login.balbix.net/oauth2/aus9g844oA86yTqSo356/v1/introspect
+    revocation: https://login.balbix.net/oauth2/aus9g844oA86yTqSo356/v1/revoke
+    end_session: https://login.balbix.net/oauth2/aus9g844oA86yTqSo356/v1/logout
+    device_authorization: https://login.balbix.net/oauth2/aus9g844oA86yTqSo356/v1/device/authorize
+    registration: https://login.balbix.net/oauth2/v1/clients
+  grant_types_supported:
+  - authorization_code
+  - implicit
+  - refresh_token
+  - password
+  - urn:ietf:params:oauth:grant-type:device_code
+  token_endpoint_auth_methods_supported:
+  - client_secret_basic
+  - client_secret_post
+  - client_secret_jwt
+  - private_key_jwt
+  - none
+  id_token_signing_alg_values_supported:
+  - RS256
+  dpop_signing_alg_values_supported:
+  - RS256
+  - RS384
+  - RS512
+  - ES256
+  - ES384
+  - ES512
+  source: well-known/balbix-openid-configuration.json
+credential_provisioning:
+  self_service: false
+  description: 'API credentials can only be created by Balbix Engineering and Balbix
+    Customer Success, and are created per customer tenant. Balbix documents that a
+    future UI update will let users create and manage their own credentials. On
+    request Balbix provides: the Base URL for the customer''s API endpoints, a static
+    username and password for the token endpoint, a Customer Key parameter for the
+    token endpoint, and a Client API Key identifying the tenant.'
+  source: https://docs.safe.security/balbixhelp/docs/balbix-rest-api-guide-v20
+sso:
+  supported: true
+  provider: Okta
+  docs: https://docs.safe.security/balbixhelp/docs/provisioning-users-for-sso-enabled-customers
+access_control:
+  docs: https://docs.safe.security/balbixhelp/docs/access-control-list-configuration
+  project_permissions: https://docs.safe.security/balbixhelp/docs/project-permissions-reference
+x-evidence:
+  fetched: '2026-08-02'
+  sources:
+  - url: https://docs.safe.security/balbixhelp/docs/balbix-rest-api-guide-v20.md
+    http_status: 200
+  - url: https://login.balbix.net/oauth2/aus9g844oA86yTqSo356/.well-known/openid-configuration
+    http_status: 200
+    content_type: application/json

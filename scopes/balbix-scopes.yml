@@ -1,0 +1,74 @@
+generated: '2026-08-02'
+method: probed
+source: https://login.balbix.net/oauth2/aus9g844oA86yTqSo356/.well-known/openid-configuration
+docs: https://docs.safe.security/balbixhelp/docs/provisioning-users-for-sso-enabled-customers
+note: Balbix's REST API v1 is not OAuth-protected — it uses HTTP Basic token exchange
+  plus a Client-API-Key header (see authentication/balbix-authentication.yml). The
+  scopes recorded here belong to the Okta-hosted OpenID Connect authorization server
+  that fronts the Balbix platform web application, harvested anonymously from its
+  published discovery document. They are the standard OIDC scope set; Balbix publishes
+  no custom API scopes.
+schemes:
+- name: BalbixOkta
+  provider: Okta
+  issuer: https://login.balbix.net/oauth2/aus9g844oA86yTqSo356
+  source: well-known/balbix-openid-configuration.json
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://login.balbix.net/oauth2/aus9g844oA86yTqSo356/v1/authorize
+    tokenUrl: https://login.balbix.net/oauth2/aus9g844oA86yTqSo356/v1/token
+scopes:
+- scope: openid
+  description: Required OpenID Connect scope; requests an ID token.
+  standard: OpenID Connect Core 1.0
+  requested_by_app: true
+  flows:
+  - authorizationCode
+  sources:
+  - well-known/balbix-openid-configuration.json
+- scope: profile
+  description: Requests the end-user's default profile claims (name, family_name,
+    given_name, preferred_username, picture, locale, updated_at and related).
+  standard: OpenID Connect Core 1.0
+  requested_by_app: true
+  flows:
+  - authorizationCode
+  sources:
+  - well-known/balbix-openid-configuration.json
+- scope: email
+  description: Requests the email and email_verified claims.
+  standard: OpenID Connect Core 1.0
+  requested_by_app: false
+  sources:
+  - well-known/balbix-openid-configuration.json
+- scope: address
+  description: Requests the address claim.
+  standard: OpenID Connect Core 1.0
+  requested_by_app: false
+  sources:
+  - well-known/balbix-openid-configuration.json
+- scope: phone
+  description: Requests the phone_number and phone_number_verified claims.
+  standard: OpenID Connect Core 1.0
+  requested_by_app: false
+  sources:
+  - well-known/balbix-openid-configuration.json
+- scope: offline_access
+  description: Requests a refresh token so the client can obtain new access tokens
+    without user interaction.
+  standard: OpenID Connect Core 1.0
+  requested_by_app: false
+  sources:
+  - well-known/balbix-openid-configuration.json
+- scope: device_sso
+  description: Okta device single sign-on scope; issues a device secret for native
+    SSO across applications on the same device.
+  standard: Okta extension
+  requested_by_app: false
+  sources:
+  - well-known/balbix-openid-configuration.json
+x-evidence:
+  fetched: '2026-08-02'
+  url: https://login.balbix.net/oauth2/aus9g844oA86yTqSo356/.well-known/openid-configuration
+  http_status: 200
+  content_type: application/json

@@ -1,0 +1,82 @@
+generated: '2026-08-02'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml hosts (script) plus manual probes of the
+  legacy balbix.com domain and the login.balbix.net identity host
+hosts:
+- host: safe.security
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 11 14:53:15 2026 GMT
+  hsts: true
+  hsts_max_age: 15552000
+- host: docs.safe.security
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 24 01:02:14 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+- host: app.balbix.net
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Nov 11 23:59:59 2026 GMT
+  hsts: null
+  note: platform entry point; unauthenticated requests are redirected to the Okta
+    authorization endpoint at login.balbix.net
+- host: login.balbix.net
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Mar  7 23:59:59 2027 GMT
+  hsts: true
+  hsts_max_age: 315360000
+  note: Okta-hosted identity provider for the Balbix platform
+- host: www.balbix.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct  9 14:49:59 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+  hsts_include_subdomains: true
+  hsts_preload: true
+  http_status: 301
+  note: legacy Balbix marketing domain; issues HTTP 301 to https://safe.security/
+domains:
+- domain: safe.security
+  dnssec: true
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: quarantine
+- domain: balbix.net
+  dnssec: false
+  caa:
+  - 0 issue "amazonaws.com"
+  - 0 issuewild "digicert.com"
+  - 0 issuewild "amazonaws.com"
+  - 0 issue "digicert.com"
+  spf: true
+  dmarc: false
+- domain: balbix.com
+  dnssec: false
+  caa:
+  - 0 issue "ssl.com"
+  - 0 issue "amazonaws.com"
+  - 0 issue "comodoca.com"
+  - 0 issue "digicert.com; cansignhttpexchanges=yes"
+  - 0 issue "letsencrypt.org"
+  - 0 issue "pki.goog; cansignhttpexchanges=yes"
+  - 0 issuewild "amazonaws.com"
+  - 0 issuewild "comodoca.com"
+  - 0 issuewild "digicert.com; cansignhttpexchanges=yes"
+  - 0 issuewild "letsencrypt.org"
+  - 0 issuewild "pki.goog; cansignhttpexchanges=yes"
+  - 0 issuewild "ssl.com"
+  spf: true
+  spf_record: v=spf1 include:_spf.google.com include:_spf.salesforce.com
+    include:3350762.spf07.hubspotemail.net include:mail.zendesk.com
+    include:amazonses.com ~all
+  dmarc: true
+  dmarc_policy: none
+x-evidence:
+  fetched: '2026-08-02'
+  notes: DMARC policy on balbix.com is p=none (monitor only). balbix.net publishes no
+    DMARC record. Neither balbix.com nor balbix.net is DNSSEC-signed; safe.security is.

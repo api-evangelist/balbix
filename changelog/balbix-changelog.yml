@@ -1,0 +1,93 @@
+generated: '2026-08-02'
+method: searched
+source: https://docs.safe.security/llms.txt
+docs: https://docs.safe.security/balbixhelp/docs/release-notes-june-2026
+scheme:
+  style: dated release notes
+  cadence: irregular; published as feature-level notes rather than on a fixed schedule
+  location: the "Release Notes" group inside the Balbix Help documentation on
+    docs.safe.security
+  api_versioned_separately: true
+  api_version_note: The Balbix REST API is versioned in the URI path as /apis/v1. No
+    release note in the captured window records an API change.
+current_version: null
+current_version_note: Balbix does not publish a platform version number in its release
+  notes; entries are identified by month. The product surface is referred to as
+  Balbix D3.
+entries:
+- title: Release Notes - June 2026
+  date: '2026-06-01'
+  url: https://docs.safe.security/balbixhelp/docs/release-notes-june-2026
+  breaking: false
+  highlights:
+  - VulnCheck adopted as the threat intelligence feed provider, replacing Recorded
+    Future.
+  - Exposure Scores recalibrated against the new threat data — documented expected
+    movement of 1-5 points for CVEs with existing tags and 1-20 points for CVEs
+    without.
+  - New vulnerability tags available - CISA Known Exploit, Exploit Kit Available,
+    Known Exploit, Malware Linked, OWASP Top 10, Ransomware Linked.
+  removals:
+  - Recorded Future threat intelligence feed discontinued.
+  api_changes: []
+- title: Release Notes - August 2025
+  date: '2025-08-01'
+  url: https://docs.safe.security/balbixhelp/docs/release-notes-august-2025
+  breaking: false
+  highlights:
+  - ServiceNow ITSM ticketing integration via the Balbix D3 connector, integrating
+    directly with the ServiceNow Incident module.
+  - Ticketing templates mapped to the ServiceNow catalog hierarchy (Catalogs,
+    Categories, Items) with granular field-level control.
+  api_changes: []
+- title: Release Notes - May 2025
+  date: '2025-05-23'
+  url: https://docs.safe.security/balbixhelp/docs/release-notes-may-2025
+  breaking: false
+  product: Balbix Windows Host Analyzer (HA)
+  category: Vulnerability Detection Enhancement
+  highlights:
+  - Enhanced detection of embedded software libraries via InstallLocation scanning,
+    improving coverage of bundled libraries such as OpenSSL inside larger
+    applications.
+  limitations:
+  - Only applications with a valid InstallLocation registry entry are scanned.
+  - No banner-based parsing; detection is by file presence and metadata only.
+  api_changes: []
+- title: Release Notes - April 2025
+  date: '2025-04-01'
+  url: https://docs.safe.security/balbixhelp/docs/release-notes-1
+  breaking: false
+  highlights:
+  - ServiceNow connector upgrade.
+  api_changes: []
+- title: Release Notes - March 2025
+  date: '2025-03-01'
+  url: https://docs.safe.security/balbixhelp/docs/servicenow-connector-upgrade
+  breaking: false
+  highlights:
+  - ServiceNow ticketing connector enhancements, adding Requested Item (RITM) support
+    for independent fulfillment, tasking and SLAs.
+  - Ticketing templates aligned to the ServiceNow catalog hierarchy.
+  api_changes: []
+window:
+  oldest_captured: '2025-03-01'
+  newest_captured: '2026-06-01'
+  note: This is the complete set of Release Notes pages listed in the Balbix Help
+    section of https://docs.safe.security/llms.txt as of 2026-08-02, not a truncated
+    window.
+x-evidence:
+  fetched: '2026-08-02'
+  sources:
+  - url: https://docs.safe.security/llms.txt
+    http_status: 200
+  - url: https://docs.safe.security/balbixhelp/docs/release-notes-june-2026.md
+    http_status: 200
+  - url: https://docs.safe.security/balbixhelp/docs/release-notes-august-2025.md
+    http_status: 200
+  - url: https://docs.safe.security/balbixhelp/docs/release-notes-may-2025.md
+    http_status: 200
+  - url: https://docs.safe.security/balbixhelp/docs/release-notes-1.md
+    http_status: 200
+  - url: https://docs.safe.security/balbixhelp/docs/servicenow-connector-upgrade.md
+    http_status: 200

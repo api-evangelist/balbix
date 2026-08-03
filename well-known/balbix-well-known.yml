@@ -1,0 +1,91 @@
+generated: '2026-08-02'
+method: searched
+source: live probes of every Balbix / SAFE Security host on 2026-08-02
+summary:
+  found: 3
+  probed: 19
+  note: The only /.well-known/ documents Balbix publishes are the OpenID Connect and
+    OAuth 2.0 authorization-server metadata served by its Okta-hosted identity
+    provider at login.balbix.net. No security.txt, api-catalog, ai-plugin.json or A2A
+    agent card is published on any Balbix or SAFE Security host.
+hosts:
+- host: https://login.balbix.net
+  role: identity provider (Okta) for the Balbix platform
+  documents:
+  - path: /oauth2/aus9g844oA86yTqSo356/.well-known/openid-configuration
+    status: 200
+    content_type: application/json
+    file: balbix-openid-configuration.json
+    note: custom authorization server used by the app.balbix.net web client
+  - path: /oauth2/aus9g844oA86yTqSo356/.well-known/oauth-authorization-server
+    status: 200
+    content_type: application/json
+    file: balbix-oauth-authorization-server.json
+  - path: /.well-known/openid-configuration
+    status: 200
+    content_type: application/json
+    file: balbix-org-openid-configuration.json
+    note: Okta org-level authorization server
+  - path: /.well-known/security.txt
+    status: 405
+  - path: /.well-known/agent-card.json
+    status: 404
+- host: https://www.balbix.com
+  role: legacy marketing domain (HTTP 301 to https://safe.security/)
+  documents:
+  - path: /.well-known/security.txt
+    status: 502
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 502
+  - path: /.well-known/api-catalog
+    status: 502
+  - path: /.well-known/ai-plugin.json
+    status: 502
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 502
+- host: https://safe.security
+  role: successor company website
+  documents:
+  - path: /.well-known/security.txt
+    status: 403
+    note: redirected to /security/ and served HTML, not an RFC 9116 document
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /.well-known/mcp.json
+    status: 404
+- host: https://docs.safe.security
+  role: Balbix product documentation host
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: https://app.balbix.net
+  role: Balbix platform application host
+  documents:
+  - path: /.well-known/agent-card.json
+    status: 400
+    note: all unauthenticated paths on app.balbix.net are redirected to the Okta
+      authorization endpoint; no /.well-known/ surface is served anonymously
+  - path: /.well-known/agent.json
+    status: 400
+  - path: /.well-known/security.txt
+    status: 400
+  - path: /.well-known/openid-configuration
+    status: 400
+x-evidence:
+  fetched: '2026-08-02'

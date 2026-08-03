@@ -1,0 +1,258 @@
+generated: '2026-08-02'
+method: derived
+source: https://docs.safe.security/balbixhelp/docs/balbix-rest-api-guide-v20
+docs:
+- https://docs.safe.security/balbixhelp/docs/balbix-rest-api-guide-v20
+- https://docs.safe.security/balbixhelp/docs/asset-classification-taxonomy
+- https://docs.safe.security/balbixhelp/docs/data-lifecycle-in-balbix
+note: Balbix publishes no OpenAPI document, so this entity graph is derived from the
+  verbatim request and response payloads published in the Balbix REST API Guide, plus
+  the platform's documented asset taxonomy. Only fields that appear in the published
+  examples are recorded; nothing is inferred beyond them.
+entities:
+- name: Asset
+  description: A hardware, software, cloud, IoT or endpoint asset tracked in the
+    Balbix unified asset inventory.
+  identifier:
+    field: dev_id
+    type: integer
+    note: Balbix calls this the Device ID. It disambiguates assets that share a
+      hostname or IP address.
+  resolved_by: /apis/v1/bx-it/asset/asset_list
+  detail_endpoint: /apis/v1/bx-it/asset/asset_details/{DEVICE_ID}
+  search_fields:
+  - host_name
+  - ip
+  - mac
+  observed_fields:
+  - agent_type
+  - created_at
+  - data_observers
+  - dev_id
+  - device_guid
+  - device_roles
+  - device_subtype
+  - device_tags
+  - device_type
+  - device_zone
+  - final_name
+  - groups
+  - host_name
+  - impact
+  - interfaces
+  - ip
+  - likelihood
+  - mac
+  - operatingsystem
+  - os_arch
+  - os_name
+  - os_vendor
+  - os_version
+  - serial_number
+  - site_name
+  - smbios_version
+  - system_manufacturer
+  - system_model
+  - total_physical_mem_mb
+  - unique_identifier
+- name: Vulnerability
+  description: A vulnerability instance (CVE or non-CVE) observed on an asset or an
+    application, carrying Balbix exposure scoring and MITRE ATT&CK mapping.
+  identifier:
+    field: id
+    type: uuid
+  endpoints:
+  - /apis/v1/bx-it/asset/vulns/{DEVICE_ID}
+  - /apis/v1/bx-it/application/vulns/{APP_ID}
+  observed_fields:
+  - id
+  - attck
+  - component_instance_id
+  - component_name
+  - component_state
+  - component_type
+  - component_version
+  - cpe
+  - cve_id
+  - cvss_score
+  - cvss_severity
+  - cwe_id
+  - data_sources
+  - dev_id
+  - app_id
+  - exposure_score
+  - exposure_severity
+  - first_seen
+  - fixes
+  - mitre_attck_id
+  - vuln_first_detected_at
+  - vuln_instance_state
+  - vuln_name
+  - vuln_published_date
+  - vuln_tags
+  - vuln_tracking_id
+  - vuln_type
+  enumerations:
+    vuln_type:
+    - CVE
+    - NON-CVE
+    exposure_severity:
+    - HIGH
+    component_state:
+    - UNPATCHED
+- name: Misconfiguration
+  description: A misconfiguration or policy violation observed on an asset. Shares
+    the vulnerability payload shape and is typed vuln_type NON-CVE.
+  endpoint: /apis/v1/bx-it/asset/misconfig_details/{DEVICE_ID}
+  observed_fields:
+  - id
+  - component_instance_id
+  - component_name
+  - component_state
+  - component_type
+  - component_version
+  - cve_id
+  - cvss_score
+  - cvss_severity
+  - cwe_id
+  - dev_id
+  - exposure_score
+  - exposure_severity
+  - first_seen
+  - fixes
+  - vuln_first_detected_at
+  - vuln_instance_state
+  - vuln_name
+  - vuln_published_date
+  - vuln_tags
+  - vuln_tracking_id
+  - vuln_type
+- name: SoftwareComponent
+  description: An installed software or operating-system component in an asset's
+    inventory. This endpoint returns camelCase field names.
+  identifier:
+    field: componentInstanceId
+    type: uuid
+  endpoint: /apis/v1/bx-it/asset/sw_details/{DEVICE_ID}
+  observed_fields:
+  - bomRef
+  - category
+  - componentInstanceId
+  - componentState
+  - dataSources
+  - installPath
+  - installTime
+  - name
+  - product
+  - type
+  - vendor
+  - version
+  enumerations:
+    type:
+    - APPLICATION
+- name: Application
+  description: A business application tracked in Balbix, unique by name, alias or URL.
+  identifier:
+    field: app_id
+    type: integer
+    note: Balbix calls this the Application ID.
+  resolved_by: /apis/v1/bx-it/application/app_list
+  detail_endpoint: /apis/v1/bx-it/application/app_details/{APP_ID}
+  search_fields:
+  - application_name
+  - application_id
+  - app_url
+  observed_fields:
+  - name
+  - app_id
+  - alias
+  - application_id
+  - application_owner
+  - app_tags
+  - app_type
+  - business_criticality
+  - business_owner
+  - data_observers
+  - data_sources
+  - infrastructure
+  - repository
+  - repository_type
+  - url
+- name: ApplicationArtifact
+  description: A repository, project or deployment associated with an application.
+  endpoint: /apis/v1/bx-it/application/artifacts/{APP_ID}
+  observed_fields:
+  - name
+  - app_id
+  - tags
+  - dataSources
+  - repository
+  - repository_type
+  - maxExposure
+relationships:
+- from: Asset
+  to: Vulnerability
+  type: has_many
+  via: dev_id
+  endpoint: /apis/v1/bx-it/asset/vulns/{DEVICE_ID}
+- from: Asset
+  to: Misconfiguration
+  type: has_many
+  via: dev_id
+  endpoint: /apis/v1/bx-it/asset/misconfig_details/{DEVICE_ID}
+- from: Asset
+  to: SoftwareComponent
+  type: has_many
+  via: dev_id
+  endpoint: /apis/v1/bx-it/asset/sw_details/{DEVICE_ID}
+- from: Application
+  to: Asset
+  type: has_many
+  via: infrastructure[].dev_id
+  endpoint: /apis/v1/bx-it/application/infra-assets/{APP_ID}
+  note: app_details returns an `infrastructure` array of {dev_id} objects; the
+    infra-assets endpoint returns the full Asset payloads.
+- from: Application
+  to: Vulnerability
+  type: has_many
+  via: app_id
+  endpoint: /apis/v1/bx-it/application/vulns/{APP_ID}
+- from: Application
+  to: ApplicationArtifact
+  type: has_many
+  via: app_id
+  endpoint: /apis/v1/bx-it/application/artifacts/{APP_ID}
+- from: Vulnerability
+  to: SoftwareComponent
+  type: belongs_to
+  via: component_instance_id
+  note: Vulnerability instances carry the component_instance_id of the software
+    component they were observed on.
+- from: Asset
+  to: Application
+  type: belongs_to
+  via: infrastructure
+  note: Inverse of Application has_many Asset; Balbix models applications as running
+    on infrastructure assets.
+identifier_conventions:
+- entity: Asset
+  field: dev_id
+  form: integer
+- entity: Application
+  field: app_id
+  form: integer
+- entity: Application
+  field: application_id
+  form: customer-supplied string (documented example "APP1234" / "BTD-1234")
+- entity: Vulnerability
+  field: id
+  form: UUID
+- entity: SoftwareComponent
+  field: componentInstanceId
+  form: UUID
+x-evidence:
+  fetched: '2026-08-02'
+  url: https://docs.safe.security/balbixhelp/docs/balbix-rest-api-guide-v20.md
+  http_status: 200
+  caveat: Balbix marks its documented response bodies as shortened for documentation
+    purposes, so the observed_fields lists are a floor, not the complete schema.

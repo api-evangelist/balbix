@@ -1,0 +1,156 @@
+generated: '2026-08-02'
+method: searched
+source: https://docs.safe.security/balbixhelp/docs/balbix-rest-api-guide-v20
+docs: https://docs.safe.security/balbixhelp/docs/balbix-rest-api-guide-v20
+api: Balbix REST API v1
+note: Balbix publishes no OpenAPI document. Every convention below is taken from the
+  published Balbix REST API Guide and its verbatim request/response examples.
+authentication:
+  style: token-exchange + tenant key
+  summary: HTTP Basic credentials plus a Customer Key are exchanged at
+    GET /apis/v1/gen_token for a 30-minute session token. Every subsequent call
+    carries an `Authorization` header holding that token and a `Client-API-Key`
+    header identifying the tenant.
+  headers:
+  - Authorization
+  - Client-API-Key
+  - Content-Type
+  detail: authentication/balbix-authentication.yml
+request:
+  content_type: application/json
+  method_note: The API is read-only, but list and detail-with-pagination endpoints
+    accept a JSON request body carrying filter and pagination parameters (documented
+    with `curl --data-raw`), rather than query-string parameters.
+  path_parameters:
+  - name: DEVICE_ID
+    description: Balbix asset identifier (`dev_id`), returned by the asset_list
+      endpoint.
+  - name: APP_ID
+    description: Balbix application identifier (`app_id`), returned by the app_list
+      endpoint.
+pagination:
+  style: offset
+  supported: true
+  request_fields:
+  - name: page_offset
+    location: request body
+    description: Zero-based offset of the first record to return.
+  - name: page_limit
+    location: request body
+    description: Number of records to return. Documented maximums vary by endpoint.
+  response_envelope: meta
+  response_fields:
+  - name: meta.total_count
+    description: Total number of records matching the request.
+  - name: meta.page_offset
+    description: Echo of the requested offset.
+  - name: meta.page_limit
+    description: Echo of the requested limit.
+  - name: meta.filters
+    description: Echo of applied filters.
+  - name: meta.sort
+    description: Echo of applied sort.
+  limits_by_endpoint:
+  - endpoint: /apis/v1/bx-it/asset/asset_list
+    max_page_limit: null
+    note: Example uses page_limit 100; no documented ceiling.
+  - endpoint: /apis/v1/bx-it/asset/asset_details/{DEVICE_ID}
+    paginated: false
+    note: Not paginated — a single result is expected.
+  - endpoint: /apis/v1/bx-it/asset/vulns/{DEVICE_ID}
+    max_page_limit: 1000
+  - endpoint: /apis/v1/bx-it/asset/misconfig_details/{DEVICE_ID}
+    max_page_limit: 100
+  - endpoint: /apis/v1/bx-it/asset/sw_details/{DEVICE_ID}
+    max_page_limit: 100
+  - endpoint: /apis/v1/bx-it/application/app_list
+    max_page_limit: null
+    note: Example uses page_limit 100.
+  - endpoint: /apis/v1/bx-it/application/app_details/{APP_ID}
+    paginated: false
+    note: Not paginated — a single result is expected.
+  - endpoint: /apis/v1/bx-it/application/artifacts/{APP_ID}
+    max_page_limit: 100
+  - endpoint: /apis/v1/bx-it/application/vulns/{APP_ID}
+    max_page_limit: 1000
+  - endpoint: /apis/v1/bx-it/application/infra-assets/{APP_ID}
+    max_page_limit: 100
+response_envelope:
+  list_shape: '{ "data": [ ... ], "meta": { ... } }'
+  detail_shape: '{ "data": { ... } }'
+  note: The application/app_details example is documented returning the object at the
+    document root rather than under `data`.
+  field_casing: Predominantly snake_case (dev_id, host_name, vuln_name). The software
+    inventory endpoint (sw_details) returns camelCase keys (bomRef, componentInstanceId,
+    componentState, dataSources, installPath, installTime) — the two casings coexist.
+filtering:
+  supported: true
+  style: request-body predicates
+  examples:
+  - endpoint: /apis/v1/bx-it/asset/asset_list
+    fields:
+    - host_name
+    - ip
+    - mac
+    note: Any combination of hostname, IP address and MAC address may be supplied to
+      resolve a specific asset.
+  - endpoint: /apis/v1/bx-it/application/app_list
+    fields:
+    - application_name
+    - application_id
+    - app_url
+  meta_echo: meta.filters
+idempotency:
+  supported: false
+  reason: The Balbix REST API is documented as read-only — "it is not possible to
+    modify assets, interact with the UI, upload data, or modify tags via the API" —
+    so there is no write surface for an idempotency key to protect. No idempotency
+    header is documented.
+  source: https://docs.safe.security/balbixhelp/docs/balbix-rest-api-guide-v20
+rate_limiting:
+  hard_limits: false
+  concurrency_limit: 4
+  concurrency_scope: per customer
+  signalling_headers: none documented
+  statement: "Although there are no hard-coded rate limits, the API only supports 4
+    concurrent sessions per customer; new sessions will be processed once previous
+    requests have been handled."
+  detail: rate-limits/balbix-rate-limits.yml
+consistency:
+  model: read-replica
+  statement: "The API also pulls from a replica database, so a slight delay may occur
+    between live data in the UI and the results retrieved from the API."
+  implication: Results may lag the Balbix web UI.
+bulk_export:
+  api_supported: false
+  statement: "The API is not suitable for bulk data exports, but instead for the
+    retrieval of data regarding individual or small numbers of Assets."
+  alternative: In-product export, documented at
+    https://docs.safe.security/balbixhelp/docs/exporting-data
+versioning:
+  scheme: uri-path
+  current: v1
+  path_prefix: /apis/v1
+  detail: lifecycle/balbix-lifecycle.yml
+errors:
+  documented: false
+  note: The Balbix REST API Guide publishes no error catalogue, status-code table or
+    error envelope. No errors/ artifact is emitted for this provider because there is
+    nothing published to capture.
+request_tracing:
+  request_id_header: none documented
+expansion:
+  supported: false
+  note: No field-expansion or sparse-fieldset parameter is documented. Detail
+    endpoints return the full attribute set for the entity.
+maturity:
+  statement: "This API is under active development, with many new endpoints and query
+    parameters planned to facilitate a wide range of use cases."
+  read_only: true
+  planned:
+  - Self-service API credential creation in the UI
+  - Additional endpoints and query parameters
+x-evidence:
+  fetched: '2026-08-02'
+  url: https://docs.safe.security/balbixhelp/docs/balbix-rest-api-guide-v20.md
+  http_status: 200

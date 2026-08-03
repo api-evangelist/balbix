@@ -1,0 +1,51 @@
+generated: '2026-08-02'
+method: searched
+source: https://docs.safe.security/balbixhelp/docs/balbix-rest-api-guide-v20
+docs: https://docs.safe.security/balbixhelp/docs/balbix-rest-api-guide-v20
+api: Balbix REST API v1
+summary: Balbix documents no hard request-rate ceiling. The published constraint is a
+  concurrency limit of 4 simultaneous sessions per customer, plus per-endpoint
+  pagination ceilings. No rate-limit response headers are documented.
+rate_limits:
+- name: Concurrent sessions
+  limit_count: 4
+  limit_unit: concurrent sessions
+  scope: per customer
+  behavior_on_exceed: Queued — "new sessions will be processed once previous requests
+    have been handled."
+  source: https://docs.safe.security/balbixhelp/docs/balbix-rest-api-guide-v20
+hard_rate_limit: false
+hard_rate_limit_statement: "Although there are no hard-coded rate limits, the API only
+  supports 4 concurrent sessions per customer; new sessions will be processed once
+  previous requests have been handled."
+signalling:
+  headers: []
+  note: No X-RateLimit-*, RateLimit-* (RFC 9239 style) or Retry-After headers are
+    documented.
+  retry_after_documented: false
+  status_code_429_documented: false
+token_expiry:
+  session_token_ttl_seconds: 1800
+  note: Authorization tokens issued by /apis/v1/gen_token expire after 30 minutes,
+    which bounds session length independently of any rate limit.
+pagination_ceilings:
+- endpoint: /apis/v1/bx-it/asset/vulns/{DEVICE_ID}
+  max_page_limit: 1000
+- endpoint: /apis/v1/bx-it/application/vulns/{APP_ID}
+  max_page_limit: 1000
+- endpoint: /apis/v1/bx-it/asset/misconfig_details/{DEVICE_ID}
+  max_page_limit: 100
+- endpoint: /apis/v1/bx-it/asset/sw_details/{DEVICE_ID}
+  max_page_limit: 100
+- endpoint: /apis/v1/bx-it/application/artifacts/{APP_ID}
+  max_page_limit: 100
+- endpoint: /apis/v1/bx-it/application/infra-assets/{APP_ID}
+  max_page_limit: 100
+usage_guidance:
+  bulk_export_supported: false
+  statement: "The API is not suitable for bulk data exports, but instead for the
+    retrieval of data regarding individual or small numbers of Assets."
+x-evidence:
+  fetched: '2026-08-02'
+  url: https://docs.safe.security/balbixhelp/docs/balbix-rest-api-guide-v20.md
+  http_status: 200

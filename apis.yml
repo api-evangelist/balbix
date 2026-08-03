@@ -1,18 +1,94 @@
 aid: balbix
 name: Balbix
-description: 'Balbix is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: 'Balbix is a cyber risk and exposure management platform founded in 2015
+  in San Jose, California. The Balbix Security Cloud (Balbix D3) ingests telemetry from
+  70+ security and IT systems through pre-built connectors and sensors, unifies it into
+  a single asset, application, vulnerability and software inventory model, and quantifies
+  breach risk in dollar terms so security teams can prioritize remediation. The platform
+  covers cyber asset attack surface management (CAASM), continuous threat exposure
+  management (CTEM), AppSec risk, and cyber risk quantification (CRQ), and ships BIX,
+  a natural-language AI assistant for security posture questions. Balbix exposes a
+  read-only REST API (v1) for programmatic access to assets, vulnerabilities,
+  misconfigurations, software inventory, applications and application artifacts. Balbix
+  was acquired by SAFE Security in November 2025; balbix.com now redirects to
+  safe.security and the Balbix product documentation is published as the "Balbix Help"
+  section of docs.safe.security.'
 url: https://raw.githubusercontent.com/api-evangelist/balbix/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
+x-tier: profiled
+x-tier-reason: enrichment-pipeline
+x-successor:
+  company: SAFE Security
+  url: https://safe.security/
+  event: acquisition
+  date: '2025-11-18'
+  note: balbix.com issues an HTTP 301 to https://safe.security/ (probed 2026-08-02).
+    Balbix product docs live at https://docs.safe.security/ under the "Balbix Help"
+    section; the platform continues to operate on the balbix.net domain.
 specificationVersion: '0.20'
 created: '2026-08-02'
 modified: '2026-08-02'
 tags:
 - Company
-apis: []
+- Cybersecurity
+- Security
+- Risk Management
+- Vulnerability Management
+- Exposure Management
+- Asset Management
+- Cyber Asset Attack Surface Management
+- Continuous Threat Exposure Management
+- Cyber Risk Quantification
+- Application Security
+apis:
+- aid: balbix:balbix-rest-api
+  name: Balbix REST API
+  description: 'Read-only REST API (v1) for programmatic access to Balbix Assets and
+    their associated Vulnerabilities, Misconfigurations, Software Inventory,
+    Applications and application Artifacts. Authentication is a two-part scheme: HTTP
+    Basic credentials plus a customer key are exchanged at /apis/v1/gen_token for a
+    30-minute Authorization token, which is sent alongside a per-tenant Client-API-Key
+    header on every call. Endpoints are served from a per-customer tenant host on the
+    balbix.net domain. The API is read-only, reads from a replica database, supports
+    4 concurrent sessions per customer, and is documented as unsuitable for bulk
+    export.'
+  humanURL: https://docs.safe.security/balbixhelp/docs/balbix-rest-api-guide-v20
+  baseURL: https://app.balbix.net/apis/v1
+  x-base-url-template: https://{tenant}.balbix.net/apis/v1
+  x-base-url-note: Balbix issues each customer a tenant-specific Base URL. The
+    documentation uses https://rs005tra.balbix.net/apis/v1 in its curl examples and
+    https://rs002tra.balbix.net in in-app links. app.balbix.net is the Balbix-operated
+    platform entry point (Okta-fronted).
+  x-access: gated
+  x-access-note: API credentials are issued per customer tenant by Balbix Engineering
+    / Customer Success; self-service credential creation is documented as planned but
+    not yet available.
+  tags:
+  - Assets
+  - Vulnerabilities
+  - Misconfigurations
+  - Software Inventory
+  - Applications
+  - Security
+  properties:
+  - type: APIReference
+    url: https://docs.safe.security/balbixhelp/docs/balbix-rest-api-guide-v20
+  - type: Documentation
+    url: https://docs.safe.security/balbixhelp/docs/balbix-rest-api-guide-v20
+  - type: Authentication
+    url: authentication/balbix-authentication.yml
+  - type: Conventions
+    url: conventions/balbix-conventions.yml
+  - type: RateLimits
+    url: rate-limits/balbix-rate-limits.yml
+  - type: DataModel
+    url: data-model/balbix-data-model.yml
+  x-evidence:
+    fetched: '2026-08-02'
+    url: https://docs.safe.security/balbixhelp/docs/balbix-rest-api-guide-v20.md
+    http_status: 200
+    content_type: text/markdown
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -20,4 +96,85 @@ maintainers:
   email: info@apis.io
 common:
 - type: Website
-  url: https://forgeglobal.com/balbixbbix_stock/
+  url: https://safe.security/
+- type: LegacyWebsite
+  url: https://www.balbix.com/
+- type: DeveloperPortal
+  url: https://docs.safe.security/
+- type: Documentation
+  url: https://docs.safe.security/balbixhelp/docs/dashboard-overview
+- type: APIReference
+  url: https://docs.safe.security/balbixhelp/docs/balbix-rest-api-guide-v20
+- type: GettingStarted
+  url: https://docs.safe.security/balbixhelp/docs/implementing-the-ctem-cycle-with-balbix
+- type: Support
+  url: https://docs.safe.security/balbixhelp/docs/support.md
+- type: HelpCenter
+  url: https://support.balbix.com/hc/en-us
+- type: Login
+  url: https://app.balbix.net/
+- type: Blog
+  url: https://safe.security/resources/blog/
+- type: TermsOfService
+  url: https://safe.security/terms-of-service/
+- type: PrivacyPolicy
+  url: https://safe.security/privacy-policy/
+- type: Security
+  url: https://safe.security/security/
+- type: Compliance
+  url: https://safe.security/security/
+- type: TrustCenter
+  url: security/balbix-trust-center.yml
+- type: VulnerabilityDisclosure
+  url: security/balbix-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/balbix-domain-security.yml
+- type: Authentication
+  url: authentication/balbix-authentication.yml
+- type: OAuthScopes
+  url: scopes/balbix-scopes.yml
+- type: WellKnown
+  url: well-known/balbix-well-known.yml
+- type: Conventions
+  url: conventions/balbix-conventions.yml
+- type: RateLimits
+  url: rate-limits/balbix-rate-limits.yml
+- type: DataModel
+  url: data-model/balbix-data-model.yml
+- type: Lifecycle
+  url: lifecycle/balbix-lifecycle.yml
+- type: ChangeLog
+  url: changelog/balbix-changelog.yml
+- type: Conformance
+  url: conformance/balbix-conformance.yml
+- type: Integrations
+  url: integrations/_index.yml
+- type: LLMsTxt
+  url: llms/balbix-llms.txt
+x-enrichment:
+  date: '2026-08-02'
+  status: enriched
+  artifacts_added: 16
+  pass: local-v1
+  not_published:
+    note: Probed and confirmed ABSENT on 2026-08-02 — recorded here so a later pass
+      does not re-litigate them, and so no pointer is emitted for something that does
+      not exist.
+    openapi: No OpenAPI/Swagger on www.balbix.com, balbix.net, app.balbix.net or
+      docs.safe.security (/openapi.json, /openapi.yaml, /swagger.json, /api-docs,
+      /v1/openapi.json all 404/502/auth-redirect).
+    graphql: none
+    mcp_server: none
+    agent_card: /.well-known/agent-card.json and /.well-known/agent.json return 404
+      on every host probed — no a2a/ artifact written, by contract.
+    asyncapi_or_webhooks: no outbound event or webhook surface published
+    packages_sdks: no first-party client library on npm, PyPI, RubyGems or crates.io
+    cli: none
+    sandbox: none
+    status_page: none (status.balbix.com and status.safe.security do not resolve;
+      safesecurity.statuspage.io is inactive)
+    deprecation_policy: none published
+    security_txt: none on any host
+    idempotency: not applicable — the REST API is documented as read-only
+    errors: no error catalogue, status-code table or error envelope is published
+    github_org: github.com/balbix exists but has 0 public repositories

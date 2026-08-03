@@ -1,0 +1,90 @@
+generated: '2026-08-02'
+method: searched
+source: https://docs.safe.security/balbixhelp/docs/balbix-rest-api-guide-v20
+api: Balbix REST API v1
+versioning:
+  scheme: uri-path
+  current: v1
+  path_prefix: /apis/v1
+  docs: https://docs.safe.security/balbixhelp/docs/balbix-rest-api-guide-v20
+  published_policy: false
+  note: The version is carried in the path. Balbix publishes no written API versioning
+    policy, no version-support matrix and no end-of-life schedule for API versions.
+deprecation:
+  policy_url: null
+  policy_published: false
+  sunset_header: false
+  deprecation_header: false
+  note: No RFC 8594 Sunset/Deprecation header support and no API deprecation policy
+    are documented. Feature-level removals are announced in the release notes (the
+    June 2026 notes record the removal of the Recorded Future threat intelligence
+    feed), but there is no standing policy governing notice periods.
+  detail: changelog/balbix-changelog.yml
+maturity:
+  stage: active development
+  read_only: true
+  statement: "This API is under active development, with many new endpoints and query
+    parameters planned to facilitate a wide range of use cases."
+  documented_limitations:
+  - The API is currently read-only; assets, UI state, uploads and tags cannot be
+    modified via the API.
+  - The API reads from a replica database, so results may lag the UI.
+  - 4 concurrent sessions per customer; no hard-coded rate limits.
+  - Not suitable for bulk data exports.
+  planned:
+  - Self-service creation and management of API credentials in the UI.
+  - Additional endpoints and query parameters.
+status_page:
+  url: null
+  published: false
+  probed:
+  - {url: 'https://status.balbix.com', result: DNS does not resolve}
+  - {url: 'https://status.safe.security', result: DNS does not resolve}
+  - {url: 'https://safesecurity.statuspage.io', result: 'HTTP 200, redirects to /inactive'}
+  - {url: 'https://safe.security/status', result: HTTP 403}
+  note: No public status page was found for Balbix or SAFE Security. Balbix directs
+    customers to report availability incidents through the customer support portal.
+sla:
+  url: null
+  uptime_target: null
+  note: No public uptime SLA is published. Balbix publishes a Support Data Sheet
+    (customer-facing support terms) and, separately, in-product "Remediation SLA
+    Policies" — the latter are customer-configured remediation deadlines for
+    vulnerabilities, not a Balbix service-availability commitment.
+  support_data_sheet: https://docs.safe.security/balbixhelp/docs/support-data-sheet
+  remediation_sla_policies: https://docs.safe.security/balbixhelp/docs/remediation-sla-policies
+support:
+  email: support@balbix.com
+  portal: https://support.balbix.com/hc/en-us
+  docs: https://docs.safe.security/balbixhelp/docs/support.md
+  incident_reporting: "To report a potential incident relating to the security,
+    availability or confidentiality of the Balbix service, please submit a request
+    using the customer portal."
+data_lifecycle:
+  docs: https://docs.safe.security/balbixhelp/docs/data-lifecycle-in-balbix
+  asset_retirement_policy: https://docs.safe.security/balbixhelp/docs/balbix-asset-retirement-policy
+  retention_schedule: Published in the Balbix Product Transparency Statement
+    (https://docs.safe.security/balbixhelp/docs/product-transparency-statement)
+  note: These govern the lifecycle of customer data and tracked assets inside the
+    platform, not the lifecycle of the API contract.
+deprecated_operations: []
+corporate_lifecycle:
+  event: acquisition
+  acquirer: SAFE Security
+  date: '2025-11-18'
+  effects:
+  - balbix.com issues an HTTP 301 to https://safe.security/ (probed 2026-08-02).
+  - Balbix product documentation moved from help.balbix.com (now behind a Document360
+    login) to the "Balbix Help" section of https://docs.safe.security/.
+  - The platform continues to operate on the balbix.net domain, and support is still
+    reachable at support@balbix.com.
+x-evidence:
+  fetched: '2026-08-02'
+  sources:
+  - url: https://docs.safe.security/balbixhelp/docs/balbix-rest-api-guide-v20.md
+    http_status: 200
+  - url: https://docs.safe.security/balbixhelp/docs/support.md
+    http_status: 200
+  - url: https://www.balbix.com/
+    http_status: 301
+    location: https://safe.security/

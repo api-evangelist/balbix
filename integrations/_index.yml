@@ -1,0 +1,559 @@
+generated: '2026-08-02'
+method: searched
+source: https://docs.safe.security/llms.txt
+docs: https://docs.safe.security/balbixhelp/docs/connector-list
+note: 'Balbix''s integration surface is its connector catalog: pre-built, API-based data collectors
+  that pull assets, vulnerabilities, configurations and identity data from third-party security
+  and IT systems into the Balbix unified asset model. Every entry below is a connector guide
+  Balbix publishes in its own documentation. These are LISTING-ONLY entries: no Arazzo workflow
+  is authored, because Balbix publishes no OpenAPI to bind the provider side of a two-source
+  workflow to. arazzo is null for every row by design. network_repo is only set where the
+  partner was matched to an API Evangelist catalog repo by verified company name, not by slug
+  alone.'
+direction: inbound (Balbix ingests from the partner)
+connector_types_docs: https://docs.safe.security/balbixhelp/docs/connector-and-sensor-types
+configure_docs: https://docs.safe.security/balbixhelp/docs/configure-connectors
+count: 70
+third_party_count: 64
+network_matched_count: 20
+integrations:
+- label: Amazon Web Services (AWS) Connector Guide
+  partner: Amazon Web Services (AWS)
+  slug: amazon-web-services-aws
+  docs: https://docs.safe.security/balbixhelp/docs/amazon-web-services-aws-v2.md
+  category: third-party
+  arazzo: null
+  status: partner-spec-available
+  network_repo: all/amazon-web-services-aws
+  network_name: Amazon Web Services (AWS)
+- label: Aqua Security Connector Guide
+  partner: Aqua Security
+  slug: aqua-security
+  docs: https://docs.safe.security/balbixhelp/docs/aquasec.md
+  category: third-party
+  arazzo: null
+  status: partner-spec-available
+  network_repo: all/aqua-security
+  network_name: Aqua Security
+- label: Armis Connector Guide
+  partner: Armis
+  slug: armis
+  docs: https://docs.safe.security/balbixhelp/docs/armis-v2.md
+  category: third-party
+  arazzo: null
+  status: pending-partner-spec
+  network_repo: all/armis
+  network_name: Armis
+- label: AWS Inspector Connector Guide
+  partner: AWS Inspector
+  slug: aws-inspector
+  docs: https://docs.safe.security/balbixhelp/docs/aws-inspector.md
+  category: third-party
+  arazzo: null
+  status: pending-partner-spec
+- label: Balbix Flexible Connector Guide
+  partner: Balbix Flexible
+  slug: balbix-flexible
+  docs: https://docs.safe.security/balbixhelp/docs/balbix.md
+  category: balbix-native
+  note: Balbix-operated connector / ingestion mechanism, not a third-party partner.
+  arazzo: null
+  status: not-a-partner
+- label: Balbix Forwarder Connector Guide
+  partner: Balbix Forwarder
+  slug: balbix-forwarder
+  docs: https://docs.safe.security/balbixhelp/docs/proxy.md
+  category: balbix-native
+  note: Balbix-operated connector / ingestion mechanism, not a third-party partner.
+  arazzo: null
+  status: not-a-partner
+- label: Balbix Subnet Connector Guide
+  partner: Balbix Subnet
+  slug: balbix-subnet
+  docs: https://docs.safe.security/balbixhelp/docs/subnet.md
+  category: balbix-native
+  note: Balbix-operated connector / ingestion mechanism, not a third-party partner.
+  arazzo: null
+  status: not-a-partner
+- label: Black Duck Polaris Connector Guide
+  partner: Black Duck Polaris
+  slug: black-duck-polaris
+  docs: https://docs.safe.security/balbixhelp/docs/blackduck-polaris.md
+  category: third-party
+  arazzo: null
+  status: pending-partner-spec
+- label: Black Kite Connector Guide
+  partner: Black Kite
+  slug: black-kite
+  docs: https://docs.safe.security/balbixhelp/docs/black-kite.md
+  category: third-party
+  arazzo: null
+  status: pending-partner-spec
+- label: Blackberry CylanceENDPOINT Connector Guide
+  partner: Blackberry CylanceENDPOINT
+  slug: blackberry-cylanceendpoint
+  docs: https://docs.safe.security/balbixhelp/docs/cylanceendpoint-connector-guide.md
+  category: third-party
+  arazzo: null
+  status: pending-partner-spec
+- label: Broadcom Carbon Black Connector Guide
+  partner: Broadcom Carbon Black
+  slug: broadcom-carbon-black
+  docs: https://docs.safe.security/balbixhelp/docs/vmware-carbon-black.md
+  category: third-party
+  arazzo: null
+  status: pending-partner-spec
+- label: Broadcom SES Connector Guide
+  partner: Broadcom SES
+  slug: broadcom-ses
+  docs: https://docs.safe.security/balbixhelp/docs/symantec-endpoint-security.md
+  category: third-party
+  arazzo: null
+  status: pending-partner-spec
+- label: Burp Suite Connector Guide
+  partner: Burp Suite
+  slug: burp-suite
+  docs: https://docs.safe.security/balbixhelp/docs/burpsuite.md
+  category: third-party
+  arazzo: null
+  status: pending-partner-spec
+- label: Cisco Advanced Malware Protection Connector Guide
+  partner: Cisco Advanced Malware Protection
+  slug: cisco-advanced-malware-protection
+  docs: https://docs.safe.security/balbixhelp/docs/cisco-amp.md
+  category: third-party
+  arazzo: null
+  status: pending-partner-spec
+- label: Cisco Umbrella Connector Guide
+  partner: Cisco Umbrella
+  slug: cisco-umbrella
+  docs: https://docs.safe.security/balbixhelp/docs/cisco-umbrella.md
+  category: third-party
+  arazzo: null
+  status: pending-partner-spec
+- label: Cisco Vulnerability Management (formerly Kenna Security) Connector Guide
+  partner: Cisco Vulnerability Management (formerly Kenna Security)
+  slug: cisco-vulnerability-management-formerly-kenna-security
+  docs: https://docs.safe.security/balbixhelp/docs/kenna-security.md
+  category: third-party
+  arazzo: null
+  status: pending-partner-spec
+- label: CrowdStrike Connector Guide
+  partner: CrowdStrike
+  slug: crowdstrike
+  docs: https://docs.safe.security/balbixhelp/docs/crowdstrike-v2.md
+  category: third-party
+  arazzo: null
+  status: pending-partner-spec
+  network_repo: all/crowdstrike
+  network_name: CrowdStrike
+- label: Cymulate Connector Guide
+  partner: Cymulate
+  slug: cymulate
+  docs: https://docs.safe.security/balbixhelp/docs/cymulate.md
+  category: third-party
+  arazzo: null
+  status: pending-partner-spec
+- label: Datacenter Connector Guide
+  partner: Datacenter
+  slug: datacenter
+  docs: https://docs.safe.security/balbixhelp/docs/datacenter.md
+  category: balbix-native
+  note: Balbix-operated connector / ingestion mechanism, not a third-party partner.
+  arazzo: null
+  status: not-a-partner
+- label: CrowdStrike Falcon Connector Guide
+  partner: CrowdStrike Falcon
+  slug: crowdstrike-falcon
+  docs: https://docs.safe.security/balbixhelp/docs/crowdstrike-falcon-connector-guide.md
+  category: third-party
+  arazzo: null
+  status: pending-partner-spec
+- label: Device42 Connector Guide
+  partner: Device42
+  slug: device42
+  docs: https://docs.safe.security/balbixhelp/docs/device42.md
+  category: third-party
+  arazzo: null
+  status: pending-partner-spec
+- label: FireMon Connector Guide
+  partner: FireMon
+  slug: firemon
+  docs: https://docs.safe.security/balbixhelp/docs/firemon.md
+  category: third-party
+  arazzo: null
+  status: pending-partner-spec
+  network_repo: all/firemon
+  network_name: FireMon
+- label: Flexera Connector Guide
+  partner: Flexera
+  slug: flexera
+  docs: https://docs.safe.security/balbixhelp/docs/flexera.md
+  category: third-party
+  arazzo: null
+  status: pending-partner-spec
+- label: Google Cloud Platform Connector Guide
+  partner: Google Cloud Platform
+  slug: google-cloud-platform
+  docs: https://docs.safe.security/balbixhelp/docs/google-cloud-platform-gcp.md
+  category: third-party
+  arazzo: null
+  status: partner-spec-available
+  network_repo: all/google-cloud-platform
+  network_name: Google Cloud Platform
+- label: ImmuniWeb Connector Guide
+  partner: ImmuniWeb
+  slug: immuniweb
+  docs: https://docs.safe.security/balbixhelp/docs/immuniweb.md
+  category: third-party
+  arazzo: null
+  status: pending-partner-spec
+- label: Jamf Pro Connector Guide
+  partner: Jamf Pro
+  slug: jamf-pro
+  docs: https://docs.safe.security/balbixhelp/docs/jamf-pro.md
+  category: third-party
+  arazzo: null
+  status: pending-partner-spec
+- label: Jira Ticketing Connector Guide
+  partner: Jira Ticketing
+  slug: jira-ticketing
+  docs: https://docs.safe.security/balbixhelp/docs/jira-ticketing.md
+  category: third-party
+  arazzo: null
+  status: pending-partner-spec
+- label: Kandji Connector Guide
+  partner: Kandji
+  slug: kandji
+  docs: https://docs.safe.security/balbixhelp/docs/kandji.md
+  category: third-party
+  arazzo: null
+  status: pending-partner-spec
+- label: Lacework Connector Guide
+  partner: Lacework
+  slug: lacework
+  docs: https://docs.safe.security/balbixhelp/docs/lacework.md
+  category: third-party
+  arazzo: null
+  status: pending-partner-spec
+  network_repo: all/lacework
+  network_name: Lacework FortiCNAPP
+- label: Malwarebytes Connector Guide
+  partner: Malwarebytes
+  slug: malwarebytes
+  docs: https://docs.safe.security/balbixhelp/docs/malwarebytes-connector-guide.md
+  category: third-party
+  arazzo: null
+  status: pending-partner-spec
+- label: Microsoft Azure Connector Guide
+  partner: Microsoft Azure
+  slug: microsoft-azure
+  docs: https://docs.safe.security/balbixhelp/docs/microsoft-azure-v2.md
+  category: third-party
+  arazzo: null
+  status: partner-spec-available
+  network_repo: all/microsoft-azure
+  network_name: Microsoft Azure
+- label: Microsoft Defender Connector Guide
+  partner: Microsoft Defender
+  slug: microsoft-defender
+  docs: https://docs.safe.security/balbixhelp/docs/microsoft-defender-v2.md
+  category: third-party
+  arazzo: null
+  status: partner-spec-available
+  network_repo: all/microsoft-defender
+  network_name: Microsoft Defender
+- label: Microsoft Intune Connector Guide
+  partner: Microsoft Intune
+  slug: microsoft-intune
+  docs: https://docs.safe.security/balbixhelp/docs/microsoft-intune.md
+  category: third-party
+  arazzo: null
+  status: partner-spec-available
+  network_repo: all/microsoft-intune
+  network_name: Microsoft Intune
+- label: Nexthink Connector Guide
+  partner: Nexthink
+  slug: nexthink
+  docs: https://docs.safe.security/balbixhelp/docs/nexthink-connector-guide.md
+  category: third-party
+  arazzo: null
+  status: partner-spec-available
+  network_repo: all/nexthink
+  network_name: Nexthink
+- label: Nozomi Networks On-Prem Connector Guide
+  partner: Nozomi Networks On-Prem
+  slug: nozomi-networks-on-prem
+  docs: https://docs.safe.security/balbixhelp/docs/nozomi-networks-on-prem.md
+  category: third-party
+  arazzo: null
+  status: pending-partner-spec
+- label: Nozomi Networks SaaS Connector Guide
+  partner: Nozomi Networks SaaS
+  slug: nozomi-networks-saas
+  docs: https://docs.safe.security/balbixhelp/docs/nozomi-networks-saas.md
+  category: third-party
+  arazzo: null
+  status: pending-partner-spec
+- label: OpenSecurity MobSF Connector
+  partner: OpenSecurity MobSF Connector
+  slug: opensecurity-mobsf-connector
+  docs: https://docs.safe.security/balbixhelp/docs/mobsf.md
+  category: third-party
+  arazzo: null
+  status: pending-partner-spec
+- label: Okta Connector Guide
+  partner: Okta
+  slug: okta
+  docs: https://docs.safe.security/balbixhelp/docs/okta.md
+  category: third-party
+  arazzo: null
+  status: partner-spec-available
+  network_repo: all/okta
+  network_name: Okta
+- label: Orca Security Connector Guide
+  partner: Orca Security
+  slug: orca-security
+  docs: https://docs.safe.security/balbixhelp/docs/orca-security.md
+  category: third-party
+  arazzo: null
+  status: pending-partner-spec
+  network_repo: all/orca-security
+  network_name: Orca Security
+- label: Owner Hierarchy Connector Guide
+  partner: Owner Hierarchy
+  slug: owner-hierarchy
+  docs: https://docs.safe.security/balbixhelp/docs/owner-hierarchy.md
+  category: balbix-native
+  note: Balbix-operated connector / ingestion mechanism, not a third-party partner.
+  arazzo: null
+  status: not-a-partner
+- label: Palo Alto Networks Cortex XDR Connector Guide
+  partner: Palo Alto Networks Cortex XDR
+  slug: palo-alto-networks-cortex-xdr
+  docs: https://docs.safe.security/balbixhelp/docs/palo-alto-networks-cortex-xdr.md
+  category: third-party
+  arazzo: null
+  status: pending-partner-spec
+- label: Proofpoint Connector Guide
+  partner: Proofpoint
+  slug: proofpoint
+  docs: https://docs.safe.security/balbixhelp/docs/proofpoint.md
+  category: third-party
+  arazzo: null
+  status: pending-partner-spec
+- label: Palo Alto Networks Panorama Connector Guide
+  partner: Palo Alto Networks Panorama
+  slug: palo-alto-networks-panorama
+  docs: https://docs.safe.security/balbixhelp/docs/palo-alto-networks-panorama-connector-guide.md
+  category: third-party
+  arazzo: null
+  status: pending-partner-spec
+- label: Qualys Asset Management Connector Guide
+  partner: Qualys Asset Management
+  slug: qualys-asset-management
+  docs: https://docs.safe.security/balbixhelp/docs/qualys-asset-management-connector-guide.md
+  category: third-party
+  arazzo: null
+  status: pending-partner-spec
+- label: Qualys Connector Guide
+  partner: Qualys
+  slug: qualys
+  docs: https://docs.safe.security/balbixhelp/docs/qualys-v2.md
+  category: third-party
+  arazzo: null
+  status: pending-partner-spec
+  network_repo: all/qualys
+  network_name: Qualys
+- label: Qualys Policy Compliance Connector Guide
+  partner: Qualys Policy Compliance
+  slug: qualys-policy-compliance
+  docs: https://docs.safe.security/balbixhelp/docs/qualys-compliance.md
+  category: third-party
+  arazzo: null
+  status: pending-partner-spec
+- label: Qualys Web Application Scanning Connector Guide
+  partner: Qualys Web Application Scanning
+  slug: qualys-web-application-scanning
+  docs: https://docs.safe.security/balbixhelp/docs/qualys-was.md
+  category: third-party
+  arazzo: null
+  status: pending-partner-spec
+- label: Qualys VMDR Connector Guide
+  partner: Qualys VMDR
+  slug: qualys-vmdr
+  docs: https://docs.safe.security/balbixhelp/docs/qualys-vmdr-connector-guide.md
+  category: third-party
+  arazzo: null
+  status: pending-partner-spec
+- label: Rapid7 InsightVM Connector Guide
+  partner: Rapid7 InsightVM
+  slug: rapid7-insightvm
+  docs: https://docs.safe.security/balbixhelp/docs/rapid7-insightvm.md
+  category: third-party
+  arazzo: null
+  status: pending-partner-spec
+- label: Rapid7 Nexpose On-Prem Connector Guide
+  partner: Rapid7 Nexpose On-Prem
+  slug: rapid7-nexpose-on-prem
+  docs: https://docs.safe.security/balbixhelp/docs/rapid7-nexpose.md
+  category: third-party
+  arazzo: null
+  status: pending-partner-spec
+- label: Rapid7 Nexpose File-Based Connector Guide
+  partner: Rapid7 Nexpose File-Based
+  slug: rapid7-nexpose-file-based
+  docs: https://docs.safe.security/balbixhelp/docs/rapid7-nexpose-file-based-connector-guide.md
+  category: third-party
+  arazzo: null
+  status: pending-partner-spec
+- label: RiskIQ Connector Guide
+  partner: RiskIQ
+  slug: riskiq
+  docs: https://docs.safe.security/balbixhelp/docs/riskiq-connector-guide.md
+  category: third-party
+  arazzo: null
+  status: pending-partner-spec
+  network_repo: all/riskiq
+  network_name: RiskIQ
+- label: SentinelOne Connector Guide
+  partner: SentinelOne
+  slug: sentinelone
+  docs: https://docs.safe.security/balbixhelp/docs/sentinelone.md
+  category: third-party
+  arazzo: null
+  status: pending-partner-spec
+  network_repo: all/sentinelone
+  network_name: SentinelOne
+- label: ServiceNow CMDB Connector Guide
+  partner: ServiceNow CMDB
+  slug: servicenow-cmdb
+  docs: https://docs.safe.security/balbixhelp/docs/servicenow-generic-cmdb.md
+  category: third-party
+  arazzo: null
+  status: pending-partner-spec
+- label: ServiceNow Ticketing Connector Guide
+  partner: ServiceNow Ticketing
+  slug: servicenow-ticketing
+  docs: https://docs.safe.security/balbixhelp/docs/servicenow-ticketing.md
+  category: third-party
+  arazzo: null
+  status: pending-partner-spec
+- label: SFTP Connector Guide
+  partner: SFTP
+  slug: sftp
+  docs: https://docs.safe.security/balbixhelp/docs/sftp-server.md
+  category: balbix-native
+  note: Balbix-operated connector / ingestion mechanism, not a third-party partner.
+  arazzo: null
+  status: not-a-partner
+- label: Sophos Connector Guide
+  partner: Sophos
+  slug: sophos
+  docs: https://docs.safe.security/balbixhelp/docs/sophos.md
+  category: third-party
+  arazzo: null
+  status: partner-spec-available
+  network_repo: all/sophos
+  network_name: Sophos
+- label: Tanium Connector Guide
+  partner: Tanium
+  slug: tanium
+  docs: https://docs.safe.security/balbixhelp/docs/tanium.md
+  category: third-party
+  arazzo: null
+  status: partner-spec-available
+  network_repo: all/tanium
+  network_name: Tanium
+- label: Tenable Security Center Connector Guide
+  partner: Tenable Security Center
+  slug: tenable-security-center
+  docs: https://docs.safe.security/balbixhelp/docs/tenable-sc.md
+  category: third-party
+  arazzo: null
+  status: pending-partner-spec
+- label: Tenable Vulnerability Management Connector Guide
+  partner: Tenable Vulnerability Management
+  slug: tenable-vulnerability-management
+  docs: https://docs.safe.security/balbixhelp/docs/tenable-v2.md
+  category: third-party
+  arazzo: null
+  status: pending-partner-spec
+- label: Trellix Endpoint Security Connector Guide
+  partner: Trellix Endpoint Security
+  slug: trellix-endpoint-security
+  docs: https://docs.safe.security/balbixhelp/docs/trellix-endpoint-security-connector-guide.md
+  category: third-party
+  arazzo: null
+  status: pending-partner-spec
+- label: Trend Micro Apex One Connector Guide
+  partner: Trend Micro Apex One
+  slug: trend-micro-apex-one
+  docs: https://docs.safe.security/balbixhelp/docs/trend-micro-apex-one-endpoint-security.md
+  category: third-party
+  arazzo: null
+  status: pending-partner-spec
+- label: Trend Micro Cloud One Workload Security Connector Guide
+  partner: Trend Micro Cloud One Workload Security
+  slug: trend-micro-cloud-one-workload-security
+  docs: https://docs.safe.security/balbixhelp/docs/trend-micro-cloud-one-workload-security.md
+  category: third-party
+  arazzo: null
+  status: pending-partner-spec
+- label: Veracode Connector Guide
+  partner: Veracode
+  slug: veracode
+  docs: https://docs.safe.security/balbixhelp/docs/veracode.md
+  category: third-party
+  arazzo: null
+  status: partner-spec-available
+  network_repo: all/veracode
+  network_name: Veracode
+- label: VMWare vCenter Connector Guide
+  partner: VMWare vCenter
+  slug: vmware-vcenter
+  docs: https://docs.safe.security/balbixhelp/docs/vmware-vcenter.md
+  category: third-party
+  arazzo: null
+  status: pending-partner-spec
+- label: VMWare Workspace One UEM Connector Guide
+  partner: VMWare Workspace One UEM
+  slug: vmware-workspace-one-uem
+  docs: https://docs.safe.security/balbixhelp/docs/vmware-workspace-one-uem.md
+  category: third-party
+  arazzo: null
+  status: pending-partner-spec
+- label: Wiz Connector Guide
+  partner: Wiz
+  slug: wiz
+  docs: https://docs.safe.security/balbixhelp/docs/wiz-v4.md
+  category: third-party
+  arazzo: null
+  status: pending-partner-spec
+  network_repo: all/wiz
+  network_name: Wiz
+- label: Wolken CMDB Connector Guide
+  partner: Wolken CMDB
+  slug: wolken-cmdb
+  docs: https://docs.safe.security/balbixhelp/docs/wolken-cmdb-connector-guide.md
+  category: third-party
+  arazzo: null
+  status: pending-partner-spec
+- label: XM Cyber Connector Guide
+  partner: XM Cyber
+  slug: xm-cyber
+  docs: https://docs.safe.security/balbixhelp/docs/xm-cyber.md
+  category: third-party
+  arazzo: null
+  status: pending-partner-spec
+- label: Nozomi Networks Options
+  partner: Nozomi Networks Options
+  slug: nozomi-networks-options
+  docs: https://docs.safe.security/balbixhelp/docs/nozomi-networks.md
+  category: third-party
+  arazzo: null
+  status: pending-partner-spec
+x-evidence:
+  fetched: '2026-08-02'
+  url: https://docs.safe.security/llms.txt
+  http_status: 200
