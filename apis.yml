@@ -26,7 +26,7 @@ x-successor:
   note: balbix.com issues an HTTP 301 to https://safe.security/ (probed 2026-08-02).
     Balbix product docs live at https://docs.safe.security/ under the "Balbix Help"
     section; the platform continues to operate on the balbix.net domain.
-specificationVersion: '0.20'
+specificationVersion: '0.23'
 created: '2026-08-02'
 modified: '2026-08-02'
 tags:
