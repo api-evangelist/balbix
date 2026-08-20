@@ -69,6 +69,13 @@ apis:
   - Vulnerabilities
   - Misconfigurations
   - Software Inventory
+  - Application
+  - Security
+  tags_raw:
+  - Assets
+  - Vulnerabilities
+  - Misconfigurations
+  - Software Inventory
   - Applications
   - Security
   properties:
