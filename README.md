@@ -64,34 +64,109 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Balbix is a cyber risk and exposure management platform founded in 2015 in San Jose, California. The Balbix Security Cloud (Balbix D3) ingests telemetry from 70+ security and IT systems through pre-built connectors and sensors, unifies it into a single asset, application, vulnerability and software inventory model, and quantifies breach risk in dollar terms. The platform covers CAASM, CTEM, AppSec risk and cyber risk quantification, and ships BIX, a natural-language AI assistant.
+Balbix is a cyber risk and exposure management platform founded in 2015 in San Jose, California. The Balbix Security Cloud (Balbix D3) ingests telemetry from 70+ security and IT systems through pre-built connectors and sensors, unifies it into a single asset, application, vulnerability and software inventory model, and quantifies breach risk in dollar terms so security teams can prioritize remediation. The platform covers cyber asset attack surface management (CAASM), continuous threat exposure management (CTEM), AppSec risk, and cyber risk quantification (CRQ), and ships BIX, a natural-language AI assistant for security posture questions. Balbix exposes a read-only REST API (v1) for programmatic access to assets, vulnerabilities, misconfigurations, software inventory, applications and application artifacts. Balbix was acquired by SAFE Security in November 2025; balbix.com now redirects to safe.security and the Balbix product documentation is published as the "Balbix Help" section of docs.safe.security.
 
-**Balbix was acquired by SAFE Security in November 2025.** `balbix.com` now issues an HTTP 301 to `https://safe.security/`, and Balbix product documentation is published as the "Balbix Help" section of `https://docs.safe.security/`. The platform continues to operate on the `balbix.net` domain and support is still reachable at `support@balbix.com`.
+**Areas:** Company · Cybersecurity · Security · Risk Management · Vulnerability Management · Exposure Management · Asset Management · Cyber Asset Attack Surface Management · Continuous Threat Exposure Management · Cyber Risk Quantification · Application Security
 
-## API
+## Balbix on APIs.io
 
-Balbix publishes a **read-only REST API (v1)** covering Assets, Vulnerabilities, Misconfigurations, Software Inventory, Applications and application Artifacts.
+Everything profiled for Balbix is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/balbix/](https://apis.io/providers/balbix/)** — or go straight to one of the APIs or properties below.
 
-- Reference: <https://docs.safe.security/balbixhelp/docs/balbix-rest-api-guide-v20>
-- Base URL: tenant-specific, of the form `https://{tenant}.balbix.net/apis/v1`
-- Auth: HTTP Basic + Customer Key exchanged at `/apis/v1/gen_token` for a 30-minute session token, sent with a `Client-API-Key` tenant header
-- Credentials are issued per tenant by Balbix; self-service creation is documented as planned
+### APIs (1)
 
-Balbix publishes **no OpenAPI/Swagger document**, no GraphQL endpoint, no MCP server, no A2A agent card, no AsyncAPI or webhook surface, no client SDKs on any public package registry, no CLI, no public status page and no `security.txt`. All were probed on 2026-08-02 and are recorded as absent in the artifacts below rather than assumed.
+- [Balbix REST API](https://apis.io/apis/balbix/balbix-rest-api/) — Read-only REST API (v1) for programmatic access to Balbix Assets and their associated Vulnerabilities, Misconfigurations, Software Inventory, Applications…
 
-## Artifacts
+### Published properties
 
-| Artifact | What it holds |
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### Security (4)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Balbix Authentication](https://apis.io/security/balbix/balbix-authentication/)
+- [Balbix Domain Security](https://apis.io/security/balbix/balbix-domain-security/)
+- [Balbix Trust Center](https://apis.io/security/balbix/balbix-trust-center/)
+- [Balbix Vulnerability Disclosure](https://apis.io/security/balbix/balbix-vulnerability-disclosure/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Balbix Scopes](https://apis.io/scopes/balbix/balbix-scopes/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Balbix Rate Limits](https://apis.io/rate-limits/balbix/balbix-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://safe.security/)
+- [Documentation](https://docs.safe.security/balbixhelp/docs/dashboard-overview)
+- [Getting started](https://docs.safe.security/balbixhelp/docs/implementing-the-ctem-cycle-with-balbix)
+- [API reference](https://docs.safe.security/balbixhelp/docs/balbix-rest-api-guide-v20)
+- [Support](https://docs.safe.security/balbixhelp/docs/support.md)
+- [Blog](https://safe.security/resources/blog/)
+- [Security](https://safe.security/security/)
+- [Compliance](https://safe.security/security/)
+- [Terms of service](https://safe.security/terms-of-service/)
+- [Privacy policy](https://safe.security/privacy-policy/)
+
+## API Evangelist rating
+
+**Kin Score 39.9** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
 |---|---|
-| `authentication/` | Full auth profile: REST token exchange + tenant key, and the Okta OIDC SSO surface |
-| `scopes/` | OIDC scopes harvested from the live Okta discovery document |
-| `well-known/` | The three OIDC/OAuth discovery documents served at `login.balbix.net`, plus every `/.well-known/` path probed and its status |
-| `conventions/` | Pagination, response envelope, filtering, consistency model, read-only posture, rate signalling |
-| `rate-limits/` | The documented 4-concurrent-session-per-customer limit and per-endpoint pagination ceilings |
-| `data-model/` | Entity graph (Asset, Application, Vulnerability, Misconfiguration, SoftwareComponent, ApplicationArtifact) derived from published payloads |
-| `lifecycle/` | Versioning, maturity statement, support, data lifecycle, and the corporate acquisition record |
-| `changelog/` | The five published Balbix release notes, March 2025 – June 2026 |
-| `conformance/` | Standards posture — CVE/CVSS/CWE/CPE/MITRE ATT&CK/EPSS/FAIR yes; OpenAPI/RFC 9457/RFC 9116/A2A/MCP no |
-| `security/` | Domain security probes, responsible disclosure program, compliance certifications |
-| `integrations/` | The 70 connector guides Balbix publishes, listing-only |
-| `llms/` | Generated `llms.txt` for the Balbix surface |
+| Discoverability | 69.6 |
+| Contract quality | 0.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 47.4 |
+| Developer ergonomics | 57.1 |
+| Access clarity | 43.4 |
+
+**Agent readiness 17.6** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | yes |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | na |
+
+**Regulatory alignment 45.1** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/balbix/](https://apis.io/providers/balbix/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Balbix: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/balbix/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
